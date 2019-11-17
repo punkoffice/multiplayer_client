@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<title>Multiplayer Game</title>
+		<style>
+			canvas {
+				position: absolute;
+				left: 0;
+				top: 100px;
+				height: calc(100% - 100px);
+				width: 100%;
+				background-color: rgba(0,0,0,0);
+			}
+			span, button {
+				font: 12pt Arial;
+			}
+			h1 {
+				font-family: Arial;
+			}
+		</style>
+		<script src="https://cdn.babylonjs.com/babylon.js"></script>
+		<script src="https://cdn.babylonjs.com/gui/babylon.gui.min.js"></script>
+		<script src="https://code.jquery.com/pep/0.4.3/pep.min.js"></script>
+		<script src="classes/avatar.js"></script>
+		<script src="classes/billboard.js"></script>
+		<script src="classes/input.js"></script>
+		<script src="classes/player.js"></script>
+		<script src="classes/socket.js"></script>
+		<script src="classes/UI.js"></script>
+		<script src="classes/world.js"></script>
+	</head>
+	<body>
+		<h1>Multiplayer Game</h1>
+		<span>Username: </span><input type="text" id="username">&nbsp;&nbsp;
+		<button id="login" onclick="UI.login()">Log-in</button>
+		<canvas id="canvas"></canvas>
+	</body>
+	<script src="client.js"></script>
+</html>

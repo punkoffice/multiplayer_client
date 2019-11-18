@@ -24,11 +24,14 @@ class Player {
     
     //Find existing player or create if not exists
     static find(playerID, username) {       
+        //Check if player is in our list
         for (var objPlayer of Player.all) {
             if (objPlayer.id === playerID) {
+                //Found player, so lets return it
                 return(objPlayer);
             }
         };                
+        //Player doesn't exist, so lets create a new one
         return(new Player(playerID, username));
     }
     

@@ -9,7 +9,7 @@ class UI {
     
     static setupEvents() {
         UI.username = document.getElementById("username");
-        UI.username.addEventListener("keyup", function(event) {
+        UI.username.addEventListener("keyup", (event) => {
             //Login on enter key press
             if (event.keyCode === 13) {
                 event.preventDefault();

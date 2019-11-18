@@ -57,7 +57,7 @@ class Player {
         }
         
         //Remove me from list of all players
-        Player.all = Player.all.filter(function(obj) {
+        Player.all = Player.all.filter((obj) => {
             return obj.id !== playerID;
         });
     }

@@ -4,7 +4,8 @@ class UI {
     
     static login() {
         var username = UI.username.value;
-        Socket.init(username);
+        Avatar.init();
+		Input.init();     
     }
     
     static setupEvents() {

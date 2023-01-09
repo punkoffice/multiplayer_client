@@ -20,7 +20,11 @@ class Input {
             case 68: //D
                 Input.key.right = true;
                 break;
-        }
+			case 40: //DOWN
+			case 83: //S
+				Input.key.down = true;
+                break;
+			}
     }
     
     static keyupEvent(e) {
@@ -36,6 +40,10 @@ class Input {
             case 39: //RIGHT
             case 68: //D
                 Input.key.right = false;
+                break;
+			case 40: //DOWN
+			case 83: //S
+				Input.key.down = false;
                 break;
         }
     }

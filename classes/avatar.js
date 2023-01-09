@@ -11,21 +11,31 @@ class Avatar {
         Avatar.mesh.position.y = Avatar.height/2;
         Avatar.mesh.material = new BABYLON.StandardMaterial("matAvatar", World.scene);
         Avatar.mesh.material.diffuseColor = new BABYLON.Color3.Green();
+
+		Avatar.plane = BABYLON.MeshBuilder.CreatePlane("plane", {width: 0.1, height: 0.3}, World.scene);
+		Avatar.plane.rotate(BABYLON.Axis.Y, Math.PI/2, BABYLON.Space.WORLD);
+		Avatar.plane.parent = this.mesh;
+		Avatar.plane.position.x = 0.1;
+		const matPlane = new BABYLON.StandardMaterial("matPlane",World.scene);
+		matPlane.backFaceCulling = false;
+		matPlane.diffuseColor = BABYLON.Color3.Yellow();
+		Avatar.plane.material = matPlane;
+
         new Billboard(Avatar.mesh, Avatar.username);
     }   
     
     static rotate(isLeft) {
         //Turning left
-		let multiplier = (Avatar.isFacingBack?-1:1);
+		let direction = (Avatar.isFacingBack?-1:1);
         if (isLeft) {
-            Avatar.viewingRotation -= Avatar.rotationSpeed * multiplier;
-            Avatar.absoluteRotation -= Avatar.rotationSpeed * multiplier;
-            Avatar.mesh.rotate(BABYLON.Axis.Y, Avatar.rotationSpeed * multiplier, BABYLON.Space.WORLD);
+            Avatar.viewingRotation -= Avatar.rotationSpeed * direction;
+            Avatar.absoluteRotation -= Avatar.rotationSpeed * direction;
+            Avatar.mesh.rotate(BABYLON.Axis.Y, Avatar.rotationSpeed * direction, BABYLON.Space.WORLD);
         //Turning right
         } else {
-            Avatar.viewingRotation += Avatar.rotationSpeed * multiplier;            
-            Avatar.absoluteRotation += Avatar.rotationSpeed * multiplier;
-            Avatar.mesh.rotate(BABYLON.Axis.Y, -Avatar.rotationSpeed * multiplier, BABYLON.Space.WORLD);
+            Avatar.viewingRotation += Avatar.rotationSpeed * direction;            
+            Avatar.absoluteRotation += Avatar.rotationSpeed * direction;
+            Avatar.mesh.rotate(BABYLON.Axis.Y, -Avatar.rotationSpeed * direction, BABYLON.Space.WORLD);
         }
     }    
     
@@ -52,6 +62,7 @@ class Avatar {
 			//Moving backwards
 			if (Input.key.down) {
 				if (!Avatar.isFacingBack) {
+                    //Spin avatar around if facing front
 					Avatar.absoluteRotation -= Math.PI;
 					Avatar.isFacingBack = true;
 					Avatar.mesh.rotate(BABYLON.Axis.Y, Math.PI, BABYLON.Space.WORLD);
@@ -70,3 +81,4 @@ Avatar.mesh = null;
 Avatar.rotationSpeed = 0.01;
 Avatar.walkSpeed = 0.007;
 Avatar.isFacingBack = false;
+Avatar.plane = null;
